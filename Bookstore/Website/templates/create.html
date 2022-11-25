@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bookstore</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Введите название</label><br>
+            <input type="text" name="bookname" />
+        </p>
+        <p>
+            <label>Введите автора</label><br>
+            <input type="text" name="author" />
+        </p>
+        <p>
+            <label>Введите цену</label><br>
+            <input type="number" name="price" />
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+</body>
+</html>

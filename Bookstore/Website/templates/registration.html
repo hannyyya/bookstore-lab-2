@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bookstore</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Укажите логин:</label><br>
+            <input type="text" name="userName" />
+        </p>
+        <p>
+            <label>Укажите пароль:</label><br>
+            <input type="password" name="userPassword" />
+        </p>
+        <input type="submit" value="Зарегистрироваться" >
+    </form>
+</body>
+</html>

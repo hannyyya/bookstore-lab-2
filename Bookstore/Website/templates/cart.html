@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Bookstore - Корзина</title>
+    <style type="text/css">
+   TABLE {
+    width: 600px; /* Ширина таблицы */
+    border: 1px solid black; /* Рамка вокруг таблицы */
+   }
+   TD, TH {
+    padding: 3px; /* Поля вокруг содержимого ячеек */
+   }
+   TH {
+    text-align: left; /* Выравнивание по левому краю */
+    background: black; /* Цвет фона */
+    color: white; /* Цвет текста */
+   }
+    </style>
+</head>
+<body>
+<form>
+    {% csrf_token %}
+    {% if userRole == 0%}
+        <a>{{userName}}</a>
+    {% endif %}
+    {% if userRole != 0%}
+        <a href="/personalArea/">{{userName}}</a>
+    {% endif %}
+    {% if userRole == 0%}
+        <a href="registration/">Регистрация</a>
+        <a href="login/">Вход</a>
+    {% endif %}
+    {% if userRole != 0%}
+        <a href="/login/">Сменить пользователя</a>
+        <a href="/logout/">Выход</a>
+    {% endif %}
+</form>
+<form>
+<h2>Список книг в корзине</h2>
+<table>
+    <thead>
+    <th>Название</th>
+    <th>Автор</th>
+    <th>Цена</th>
+    </thead>
+
+    {% for book in bookForCart %}
+    <tr>
+        <td>{{ book.bookname }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.price }}</td>
+    </tr>
+    {% endfor %}
+</table>
+    <form><a>Стоимость всех книг: {{totalSum}}</a></form>
+    <form><a href="/order/">Перейти к оформлению заказа</a></form>
+</form>
+</body>
+</html>

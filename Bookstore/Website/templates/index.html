@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Bookstore - Главная</title>
+    <style type="text/css">
+   TABLE {
+    width: 600px; /* Ширина таблицы */
+    border: 1px solid black; /* Рамка вокруг таблицы */
+   }
+   TD, TH {
+    padding: 3px; /* Поля вокруг содержимого ячеек */
+   }
+   TH {
+    text-align: left; /* Выравнивание по левому краю */
+    background: black; /* Цвет фона */
+    color: white; /* Цвет текста */
+   }
+
+    </style>
+</head>
+<body>
+
+<form>
+    {% csrf_token %}
+    {% if userRole == 0%}
+        <a>{{userName}}</a>
+    {% endif %}
+    {% if userRole != 0%}
+        <a href="personalArea/">{{userName}}</a>
+    {% endif %}
+    {% if userRole == 0%}
+        <a href="registration/">Регистрация</a>
+        <a href="login/" name = "login">Вход</a>
+    {% endif %}
+    {% if userRole != 0%}
+        <a href="login/">Сменить пользователя</a>
+        <a href="logout/">Выход</a>
+        <a href="cart/">Корзина</a>
+        <a href="orderList/">Заказы</a>
+    {% endif %}
+</form>
+<form method="POST">
+{% if book.count > 0 %}
+<h2>Список книг</h2>
+<table>
+    <thead>
+    <th>Название</th>
+    <th>Автор</th>
+    <th>Цена</th>
+    {% if userRole == 1%}
+    <th>Действие</th>
+    {% endif %}
+    </thead>
+
+    {% for book in pageObj %}
+    <tr>
+        <td>{{ book.bookname }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.price }}</td>
+        {% if userRole == 1%}
+        <td><a href="edit/{{book.id}}">Изменить</a> | <a href="delete/{{book.id}}">Удалить</a></td>
+        {% endif %}
+        {% if userRole != 0%}
+        <td><a href="index/{{book.id}}" name = add_book_in_cart>В корзину</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<ul>
+    {% for p in pageObj.paginator.page_range %}
+    <a href="?page={{ p }}">{{ p }}</a>
+    {% endfor %}
+</ul>
+</form>
+{% if userRole == 2 or userRole == 1%}
+<form>
+    <a href="create/">Добавить новую книгу в список</a>
+</form>
+{% endif %}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

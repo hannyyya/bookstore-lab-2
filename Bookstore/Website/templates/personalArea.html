@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore - Личный кабинет</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+        <h2>Личный кабинет пользователя</h2>
+        <a>(Здесь вы можете изменить логин и пароль для доступа к аккаунту)</a>
+        </div>
+        <p>
+            <label>Ваш логин:</label><br>
+            <input type="text" name="userName" value = "{{user.userName}}" />
+        </p>
+        <p>
+            <label>Пароль:</label><br>
+            <input type="password" name="userPassword" value = ""/>
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+</body>
+</html>
