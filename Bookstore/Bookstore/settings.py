@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-t3#wfaow_p(8^j%qt9n3$$q^xk)2txieqczh*z)k*eq6^i$)ak
 DEBUG = True
 #DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -80,9 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bookstore',
-        'USER': 'hannya',
+        'USER': 'PaklinAV',
         'PASSWORD': '123456sasha',
-        'HOST': 'hannya.mysql.pythonanywhere-services.com',
+        'HOST': 'PaklinAV.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
